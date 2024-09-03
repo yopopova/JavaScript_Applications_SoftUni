@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Forms</title>
+</head>
+<body>
+    <h1>Forms</h1>
+
+    <form method="POST" id="login-form"> 
+        <!-- action="/login" action="/forms.html" -->
+        <div>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Pesho">
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password">
+        </div>
+        <div>
+            <input type="submit" id="submit-button" value="Login">
+        </div>
+    </form>
+
+    <script>
+        let formElement = document.getElementById('login-form');
+
+        formElement.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let formData = new FormData(e.currentTarget); // currentTarget is the element with the eventListener
+            // new FormData is a class
+
+            // get value from input fields with name="username" and name="password"; this isn't a Map()
+            let username = formData.get('username');
+            let password = formData.get('password');
+
+            // Like this we can the username and the password; this is equivalent to the upper lines
+            // let {username, password} = Object.fromEntries(formData); // Turns formData into ordinary object
+
+            // console.log(username);
+            // console.log(password);
+
+            let data = {
+                email: username,
+                password
+            }
+
+            fetch('http://localhost:3030/users/login', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(res => res.json())
+            .then(user => {
+                console.log(user);
+                // localStorage.setItem('token', user.accessToken); // Like that we save the token in local storage in the browser
+                // localStorage.setItem('user', JSON.stringify(user)); // Like that we take the whole data
+
+                localStorage.setItem('_id', user._id);
+                localStorage.setItem('username', user.username);
+                localStorage.setItem('accessToken', user.accessToken);
+            })
+            .catch(err => {
+                console.error(err);
+            }) 
+        });
+    </script>
+</body>
+</html>
