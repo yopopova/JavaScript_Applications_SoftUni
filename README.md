@@ -21,3 +21,6 @@ Please keep in mind that if you want to use any of these materials after downloa
 
 You also have to start the server. First type `cd server` to enter the server folder. After that run the `node server.js` command. To stop the server press the `Ctrl+C` command.
 
+## Certificate
+
+![JS Applications - June 2023 - Certificate](https://github.com/user-attachments/assets/fc667e08-67c5-4a5d-b3b7-a49faab2eac1)
