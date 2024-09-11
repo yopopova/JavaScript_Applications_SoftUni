@@ -15,3 +15,9 @@ In the 'JavaScript Applications' course, students will learn what HTTP requests 
 - Working with REST APIs and asynchronous programming
 - Testing the application
 
+## Note
+
+Please keep in mind that if you want to use any of these materials after downloading the repository, you should run the `npm install` command into your VS Code terminal to generate the `node_modules` folder.
+
+You also have to start the server. First type `cd server` to enter the server folder. After that run the `node server.js` command. To stop the server press the `Ctrl+C` command.
+
