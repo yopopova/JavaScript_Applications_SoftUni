@@ -1,0 +1,27 @@
+import { clearUserData, setUserData } from "../util.js";
+import { get, post } from "./api.js";
+
+const endpoints = {
+    'login': '/users/login',
+    'register': '/users/register',
+    'logout': '/users/logout'
+}
+
+export async function login(email, password) {
+    const result = await post(endpoints.login, { email, password });
+    setUserData(result);
+
+    return result;
+}
+
+export async function register(email, username, password, repass) {
+    const result = await post(endpoints.register, { email, username, password, repass });
+    setUserData(result);
+
+    return result;
+}
+
+export async function logout() {
+    get(endpoints.logout);
+    clearUserData(); // If we don't add this function, the user will stay loged in, but with invalid token.
+} 
